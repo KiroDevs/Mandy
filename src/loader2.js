@@ -1,5 +1,6 @@
 const MandyBot = require('./loader');
 const { readdirSync } = require('fs');
+require('dotenv').config();
 
 class Utils {
     /**
@@ -10,9 +11,7 @@ class Utils {
     }
 
     startClient() {
-        const botCommands = readdirSync('./commands').filter((file) =>
-            file.endsWith('js'),
-        );
+        const botCommands = readdirSync('./commands').filter((file) => file.endsWith('js'));
 
         botCommands.map((botCommand) => {
             const command = require(`../commands/${botCommand}`);
@@ -20,14 +19,10 @@ class Utils {
             this.client.commands.set(command.name, command);
 
             if (command.aliases && command.aliases.length)
-                command.aliases.map((alias) =>
-                    this.client.aliases.set(alias, command.name),
-                );
+                command.aliases.map((alias) => this.client.aliases.set(alias, command.name));
         });
 
-        const botEvents = readdirSync('./events').filter((file) =>
-            file.endsWith('js'),
-        );
+        const botEvents = readdirSync('./events').filter((file) => file.endsWith('js'));
 
         botEvents.map((botEvent) => {
             const event = require(`../events/${botEvent}`);
@@ -36,7 +31,7 @@ class Utils {
             this.client.on(event.name, event.run.bind(null, this.client));
         });
 
-        this.client.login(this.client.config.token);
+        this.client.login(process.env.TOKEN);
     }
 }
 

@@ -1,12 +1,7 @@
 'use strict';
 const MandyBot = require('../src/loader');
 const ms = require('ms');
-const {
-    Permissions,
-    Collection,
-    MessageEmbed,
-    Message,
-} = require('discord.js');
+const { Permissions, Collection, MessageEmbed, Message } = require('discord.js');
 module.exports = {
     name: 'createrole',
     aliases: ['create-r'],
@@ -24,15 +19,11 @@ module.exports = {
             }
 
             if (
-                !message.member.permissions.has(
-                    Permissions.FLAGS.MANAGE_ROLES,
-                ) ||
+                !message.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES) ||
                 !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
             ) {
                 message.delete();
-                message.channel.send(
-                    `Você não tem permissão para executar esse comando`,
-                );
+                message.channel.send(`Você não tem permissão para executar esse comando`);
 
                 return;
             }
@@ -41,9 +32,7 @@ module.exports = {
 
             if (!Nome) {
                 message.delete();
-                message.channel.send(
-                    `Coloque o nome do cargo para que eu possa criar`,
-                );
+                message.channel.send(`Coloque o nome do cargo para que eu possa criar`);
             }
 
             let NoTime = new MessageEmbed()

@@ -1,11 +1,6 @@
 'use strict';
 const MandyBot = require('../src/loader');
-const {
-    Permissions,
-    Collection,
-    MessageEmbed,
-    Message,
-} = require('discord.js');
+const { Permissions, Collection, MessageEmbed, Message } = require('discord.js');
 const ms = require('ms');
 
 module.exports = {
@@ -36,10 +31,7 @@ module.exports = {
                 return;
             }
 
-            let Embed = new MessageEmbed()
-                .setColor('BLUE')
-                .setTitle(`Lembrete`)
-                .setDescription(`${Aviso}`);
+            let Embed = new MessageEmbed().setColor('BLUE').setTitle(`Lembrete`).setDescription(`${Aviso}`);
 
             message.delete();
             setTimeout(() => {

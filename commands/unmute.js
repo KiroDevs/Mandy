@@ -20,30 +20,22 @@ module.exports = {
             }
 
             if (
-                !message.member.permissions.has(
-                    Permissions.FLAGS.ADMINISTRATOR,
-                ) ||
+                !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
                 !message.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)
             ) {
                 message.delete();
-                message.channel.send(
-                    `Você não tem permissão para executar esse comando`,
-                );
+                message.channel.send(`Você não tem permissão para executar esse comando`);
             }
 
             let membro = message.mentions.users.first();
 
-            let cargo = message.guild.roles.cache.find(
-                (r) => r.name === 'Mutado',
-            );
+            let cargo = message.guild.roles.cache.find((r) => r.name === 'Mutado');
 
             const { guild } = message;
 
             if (!membro) {
                 message.delete();
-                message.channel.send(
-                    `Mencione ou coloque o ID da pessoa que deseja desmutar`,
-                );
+                message.channel.send(`Mencione ou coloque o ID da pessoa que deseja desmutar`);
             } else {
                 const member = guild.members.cache.get(membro.id);
                 if (!member.roles.cache.has(cargo.id)) {
@@ -55,9 +47,7 @@ module.exports = {
                     let embed = new MessageEmbed()
                         .setAuthor(`Mute`)
                         .setColor('BLUE')
-                        .setDescription(
-                            `<@${message.author.id}>, deu unmute no ${membro}`,
-                        );
+                        .setDescription(`<@${message.author.id}>, deu unmute no ${membro}`);
 
                     message.delete();
                     message.channel.send({

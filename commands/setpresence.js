@@ -20,9 +20,7 @@ module.exports = {
 
             if (message.author.id !== '798534518897115137') {
                 message.delete();
-                message.channel.send(
-                    `Apenas o Dono do bot pode executar tal comando.`,
-                );
+                message.channel.send(`Apenas o Dono do bot pode executar tal comando.`);
             } else {
                 let presence = args.join(' ');
                 client.user.setPresence({

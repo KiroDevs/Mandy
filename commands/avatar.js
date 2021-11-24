@@ -8,9 +8,9 @@ module.exports = {
     aliases: [],
 
     /**
-     * @param {MandyBot} client Discord Client
-     * @param {Message} message Discord Message
-     * @param {String[]} args Command Arguments
+     *  @param {MandyBot} client Discord Client
+     *  @param {Message} message Discord Message
+     *  @param {String[]} args Command Arguments
      */
 
     run: async (client, message, args) => {
@@ -18,6 +18,7 @@ module.exports = {
             if (!message.guild) {
                 return;
             }
+            const { guild } = message;
 
             let membro = message.mentions.users.first() || message.author;
 
@@ -28,9 +29,7 @@ module.exports = {
 
             let avatar = new MessageEmbed()
                 .setColor('BLUE')
-                .setImage(
-                    membro.displayAvatarURL({ dynamic: true, size: 4096 }),
-                )
+                .setImage(membro.displayAvatarURL({ dynamic: true, size: 4096 }))
                 .setTimestamp()
                 .setTitle('**Avatar**');
 

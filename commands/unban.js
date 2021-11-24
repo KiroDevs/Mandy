@@ -1,11 +1,6 @@
 'use strict';
 const MandyBot = require('../src/loader');
-const {
-    Permissions,
-    Collection,
-    MessageEmbed,
-    Message,
-} = require('discord.js');
+const { Permissions, Collection, MessageEmbed, Message } = require('discord.js');
 const ms = require('ms');
 module.exports = {
     name: 'unban',
@@ -24,15 +19,11 @@ module.exports = {
             }
 
             if (
-                !message.member.permissions.has(
-                    Permissions.FLAGS.ADMINISTRATOR,
-                ) ||
+                !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
                 !message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)
             ) {
                 message.delete();
-                message.channel.send(
-                    `Você não tem permissão para executar esse comando`,
-                );
+                message.channel.send(`Você não tem permissão para executar esse comando`);
 
                 return;
             }
@@ -47,9 +38,7 @@ module.exports = {
 
             let Echannel = new MessageEmbed()
                 .setColor('BLUE')
-                .setDescription(
-                    `<@${userID}> Foi desbanido por <@${message.author.id}> `,
-                )
+                .setDescription(`<@${userID}> Foi desbanido por <@${message.author.id}> `)
                 .setAuthor(`UNBAN`)
                 .setTimestamp()
                 .setFooter(`Roblox Mall never dies`);

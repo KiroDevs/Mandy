@@ -1,11 +1,6 @@
 'use strict';
 const MandyBot = require('../src/loader');
-const {
-    Permissions,
-    Collection,
-    MessageEmbed,
-    Message,
-} = require('discord.js');
+const { Permissions, Collection, MessageEmbed, Message } = require('discord.js');
 const ms = require('ms');
 module.exports = {
     name: 'kick',
@@ -23,13 +18,9 @@ module.exports = {
                 return;
             }
 
-            if (
-                !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
-            ) {
+            if (!message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
                 message.delete();
-                message.channel.send(
-                    `Você não tem permissão para executar esse comando`,
-                );
+                message.channel.send(`Você não tem permissão para executar esse comando`);
 
                 return;
             }
@@ -39,9 +30,7 @@ module.exports = {
 
             let Banido = new MessageEmbed()
                 .setColor('BLUE')
-                .setDescription(
-                    `${$User} Foi Expulso por <@${message.author.id}> Motivo: ${razão}`,
-                )
+                .setDescription(`${$User} Foi Expulso por <@${message.author.id}> Motivo: ${razão}`)
                 .setAuthor(`Expulso`)
                 .setTimestamp()
                 .setFooter(`Roblox Mall never dies`);
@@ -55,9 +44,7 @@ module.exports = {
 
             if (!$User) {
                 message.delete();
-                message.channel.send(
-                    `Mencione ou coloque o ID de quem deseja expulsar`,
-                );
+                message.channel.send(`Mencione ou coloque o ID de quem deseja expulsar`);
 
                 return;
             } else {

@@ -18,9 +18,7 @@ module.exports = {
                 return;
             }
 
-            if (
-                !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
-            ) {
+            if (!message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
                 message.delete();
                 return;
             }

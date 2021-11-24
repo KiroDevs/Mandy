@@ -18,7 +18,7 @@ module.exports = {
 
         var prefix = db.fetch(`prefix_${message.guild.id}`);
         if (prefix === null) {
-            prefix = client.config.px;
+            prefix = process.env.PREFIX;
         }
 
         if (!message.content.startsWith(prefix)) {

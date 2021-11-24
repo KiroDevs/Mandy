@@ -1,11 +1,6 @@
 'use strict';
 const MandyBot = require('../src/loader');
-const {
-    Permissions,
-    Collection,
-    MessageEmbed,
-    Message,
-} = require('discord.js');
+const { Permissions, Collection, MessageEmbed, Message } = require('discord.js');
 const ms = require('ms');
 module.exports = {
     name: 'ban',
@@ -23,12 +18,8 @@ module.exports = {
                 return;
             }
 
-            if (
-                !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
-            ) {
-                message.channel.send(
-                    `Você não tem permissão para executar esse comando`,
-                );
+            if (!message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+                message.channel.send(`Você não tem permissão para executar esse comando`);
             }
 
             let $User = message.mentions.users.first();
@@ -37,9 +28,7 @@ module.exports = {
 
             let Banido = new MessageEmbed()
                 .setColor('BLUE')
-                .setDescription(
-                    `${$User} Foi Banido por <@${message.author.id}> Motivo: ${razão}`,
-                )
+                .setDescription(`${$User} Foi Banido por <@${message.author.id}> Motivo: ${razão}`)
                 .setAuthor(`Expulso`)
                 .setTimestamp();
 
@@ -51,9 +40,7 @@ module.exports = {
 
             if (!$User) {
                 message.delete();
-                message.channel.send(
-                    `Mencione ou coloque o ID de quem deseja banir`,
-                );
+                message.channel.send(`Mencione ou coloque o ID de quem deseja banir`);
             } else {
                 message.guild.members
                     .ban($User)

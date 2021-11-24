@@ -20,22 +20,16 @@ module.exports = {
             }
 
             if (
-                !message.member.permissions.has(
-                    Permissions.FLAGS.ADMINISTRATOR,
-                ) ||
+                !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
                 !message.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)
             ) {
                 message.delete();
-                message.channel.send(
-                    `Você não tem permissão para executar esse comando`,
-                );
+                message.channel.send(`Você não tem permissão para executar esse comando`);
             }
 
             let membro = message.mentions.users.first();
 
-            let cargo = message.guild.roles.cache.find(
-                (r) => r.name === 'Mutado',
-            );
+            let cargo = message.guild.roles.cache.find((r) => r.name === 'Mutado');
 
             const { guild } = message;
 
@@ -51,9 +45,7 @@ module.exports = {
 
             if (!membro) {
                 message.delete();
-                message.channel.send(
-                    `Mencione ou coloque o ID da pessoa que deseja mutar`,
-                );
+                message.channel.send(`Mencione ou coloque o ID da pessoa que deseja mutar`);
             } else {
                 const member = guild.members.cache.get(membro.id);
                 if (member.roles.cache.has(cargo)) {
@@ -66,9 +58,7 @@ module.exports = {
                         let embed = new MessageEmbed()
                             .setAuthor(`Mute`)
                             .setColor('BLUE')
-                            .setDescription(
-                                `<@${message.author.id}>, mutou ${membro}`,
-                            );
+                            .setDescription(`<@${message.author.id}>, mutou ${membro}`);
 
                         message.delete();
                         message.channel.send({
@@ -80,11 +70,7 @@ module.exports = {
                         let embed = new MessageEmbed()
                             .setAuthor(`Mute`)
                             .setColor('BLUE')
-                            .setDescription(
-                                `<@${
-                                    message.author.id
-                                }>, mutou ${membro} por **${mss(tempo)}** `,
-                            );
+                            .setDescription(`<@${message.author.id}>, mutou ${membro} por **${mss(tempo)}** `);
 
                         message.delete();
                         message.channel.send({

@@ -22,13 +22,10 @@ module.exports = {
                 return;
             }
 
-            if (
-                !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
-            ) {
+            if (!message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
                 message.delete();
                 message.channel.send({
-                    content:
-                        '> Você não tem permissão para executar esse comando',
+                    content: '> Você não tem permissão para executar esse comando',
                 });
 
                 return;

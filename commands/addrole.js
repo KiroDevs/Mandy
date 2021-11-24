@@ -17,36 +17,27 @@ module.exports = {
             if (!message.guild) {
                 return;
             }
+            const { guild } = message;
 
             if (
-                !message.member.permissions.has(
-                    Permissions.FLAGS.ADMINISTRATOR,
-                ) ||
+                !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
                 !message.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)
             ) {
                 message.delete();
-                message.channel.send(
-                    `Você não tem permissão para executar esse comando`,
-                );
+                message.channel.send(`Você não tem permissão para executar esse comando`);
             }
 
             let membro = message.mentions.users.first();
-
-            const { guild } = message;
 
             let cargo = message.mentions.roles.first();
 
             if (!cargo) {
                 message.delete();
-                message.channel.send(
-                    `Escreva o nome do cargo que deseja adicionar`,
-                );
+                message.channel.send(`Escreva o nome do cargo que deseja adicionar`);
             } else {
                 if (!membro) {
                     message.delete();
-                    message.channel.send(
-                        `Mencione ou coloque o ID da pessoa que deseja mutar`,
-                    );
+                    message.channel.send(`Mencione ou coloque o ID da pessoa que deseja mutar`);
                 } else {
                     const member = guild.members.cache.get(membro.id);
                     if (member.roles.cache.has(cargo.id)) {
@@ -58,9 +49,7 @@ module.exports = {
                         let embed = new MessageEmbed()
                             .setAuthor(`AddRole`)
                             .setColor('BLUE')
-                            .setDescription(
-                                `<@${message.author.id}>, adicionou o ${cargo} para ${membro}`,
-                            );
+                            .setDescription(`<@${message.author.id}>, adicionou o ${cargo} para ${membro}`);
 
                         message.delete();
                         message.channel.send({

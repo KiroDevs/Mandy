@@ -27,26 +27,17 @@ module.exports = {
                 return;
             }
 
-            if (
-                !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
-            ) {
-                message.channel.send(
-                    `Você não tem permissão para executar esse comando`,
-                );
+            if (!message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+                message.channel.send(`Você não tem permissão para executar esse comando`);
             }
 
-            let nome = message.guild.channels.cache.find(
-                (ch) => ch.name === args.join(' '),
-            );
+            let nome = message.guild.channels.cache.find((ch) => ch.name === args.join(' '));
 
             const report6 = new MessageEmbed()
                 .setColor('#ea11e6')
                 .setDescription(`Para apagar o canal, cliquei no :x:`);
             const row3 = new MessageActionRow().addComponents(
-                new MessageButton()
-                    .setCustomId('apagar')
-                    .setStyle('SECONDARY')
-                    .setEmoji('❌'),
+                new MessageButton().setCustomId('apagar').setStyle('SECONDARY').setEmoji('❌'),
             );
 
             const collector = message.channel.createMessageComponentCollector();

@@ -20,6 +20,7 @@
         "discord.js": "^13.3.1",
         "discordjs-logger": "^2.0.0",
         "discordjs-modlogger": "^0.0.9",
+        "dotenv": "^10.0.0",
         "easy-ms": "^1.0.1",
         "fs": "^0.0.1-security",
         "humanize-ms": "^1.2.1",

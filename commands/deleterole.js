@@ -1,12 +1,7 @@
 'use strict';
 const MandyBot = require('../src/loader');
 const ms = require('ms');
-const {
-    Permissions,
-    Collection,
-    MessageEmbed,
-    Message,
-} = require('discord.js');
+const { Permissions, Collection, MessageEmbed, Message } = require('discord.js');
 module.exports = {
     name: 'deleterole',
     aliases: ['delete-r'],
@@ -24,15 +19,11 @@ module.exports = {
             }
 
             if (
-                !message.member.permissions.has(
-                    Permissions.FLAGS.MANAGE_ROLES,
-                ) ||
+                !message.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES) ||
                 !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
             ) {
                 message.delete();
-                message.channel.send(
-                    `Você não tem permissão para executar esse comando`,
-                );
+                message.channel.send(`Você não tem permissão para executar esse comando`);
 
                 return;
             }
@@ -41,30 +32,22 @@ module.exports = {
 
             if (!Nome) {
                 message.delete();
-                message.channel.send(
-                    `Coloque o nome do cargo para que eu possa criar`,
-                );
+                message.channel.send(`Coloque o nome do cargo para que eu possa criar`);
             }
 
             let NoTime = new MessageEmbed()
                 .setTitle(`DeleteRole`)
                 .setColor('BLUE')
-                .setDescription(
-                    `<@${message.author.id}> deleteou o cargo ${Nome}`,
-                )
+                .setDescription(`<@${message.author.id}> deleteou o cargo ${Nome}`)
                 .setTimestamp();
 
-            let cargo = message.guild.roles.cache.find(
-                (role) => role.name === `${Nome}`,
-            );
+            let cargo = message.guild.roles.cache.find((role) => role.name === `${Nome}`);
 
             if (!cargo) {
                 message.delete();
                 message.channel.send(`Não consegui achar o cargo`);
             } else {
-                message.guild.roles.cache
-                    .find((role) => role.name === `${Nome}`)
-                    .delete();
+                message.guild.roles.cache.find((role) => role.name === `${Nome}`).delete();
 
                 message.delete();
                 message.channel.send({
